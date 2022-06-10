@@ -1,0 +1,706 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Kotlin</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d8590dcf-e65b-49f0-9728-210c6f9c241e" class="page sans"><header><img class="page-cover-image" src="Kotlin%20d8590dcfe65b49f09728210c6f9c241e/wp8476366.png" style="object-position:center 47.540000000000006%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⌨️</span></div><h1 class="page-title">Kotlin</h1></header><div class="page-body"><h2 id="0d7a16ff-5b64-4c01-a4bd-c043c0ce61cd" class="">Fonctions :</h2><div id="703d6829-31c9-424f-bcf2-f6c4b7ecbbfb" class="column-list"><div id="99154c9a-fe14-4850-9805-50fe65490681" style="width:50%" class="column"><pre id="ed4a53de-727f-415c-9b6d-ecfe6bcda418" class="code code-wrap"><code>fun</code></pre></div><div id="8bce6415-0ad9-4d77-9802-0ffba7ccfa45" style="width:50%" class="column"><p id="b9d75b7b-11d3-48c0-80a6-e0f3e7ad31d2" class=""><code><strong>fun</strong></code> définit une fonction. Une fonction est un ensemble de tâches.</p></div></div><p id="3605b551-7746-4415-9c61-00f344664884" class="">
+</p><div id="3e69d452-5b08-4e74-8aa7-b682326abd99" class="column-list"><div id="57b3ca96-37c8-4145-b140-a2762d6d8881" style="width:50%" class="column"><pre id="9b1b2b39-4cfe-4e25-be9e-4e12637b6b9a" class="code code-wrap"><code>fun main() {
+		
+}</code></pre></div><div id="3d9c311d-2695-49a8-8c56-e4298fe13762" style="width:50%" class="column"><p id="608680c0-076e-4377-a8ae-5b94a430cbfe" class=""><code><strong>main</strong></code> est le nom de la fonction. Cette fonction est appelée <code>main</code>, parce-que c’est la première, la principale qui est exécutée quand lance le programme. Chaque programme Kotlin nécessite une fonction <code>main</code>. Elle est suivie de deux parenthèses ainsi que de deux accolades.</p></div></div><hr id="e5d2943c-b894-41a6-80f8-fe0b35d2d28c"/><h2 id="87c86f3e-7c8e-4827-ab02-c08af4a0aa40" class="">Print :</h2><div id="f653eb20-ca40-432c-b31a-fd8a045e70bd" class="column-list"><div id="cda58bef-1cb4-43b8-9e49-3a075842ab16" style="width:50%" class="column"><pre id="37d92e1d-5bdf-4d74-9822-949f2eb6fc75" class="code code-wrap"><code>println(&quot;text&quot;)</code></pre><p id="16bf813b-8891-4a21-92b4-a9bd4b20840c" class="">Cette ligne de code imprime le texte de votre choix :</p><ul id="5d3d5afc-5bec-4768-9dc5-27de73322e84" class="bulleted-list"><li style="list-style-type:disc"><code>println</code> indique au système d&#x27;imprimer une ligne de texte.</li></ul><ul id="dca67b2a-998f-426e-b44f-20c93ca80ab6" class="bulleted-list"><li style="list-style-type:disc">À l&#x27;intérieur des parenthèses, vous mettez le texte à imprimer.</li></ul><ul id="07540b9f-7e52-4921-98c7-9c1c0ea9d38a" class="bulleted-list"><li style="list-style-type:disc">Notez que le texte à imprimer est entouré de guillemets. Cela indique au système que tout ce qui se trouve entre les guillemets doit être imprimé exactement comme indiqué.</li></ul></div><div id="6e414e1c-3ab1-41f0-8a8b-5e251cd8fff9" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6382c101-159d-421e-a565-f2f8952eed26"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Pour imprimer réellement le texte, toute cette instruction <code>println</code> doit être à l&#x27;intérieur de la fonction <code>main</code>. En d&#x27;autres termes, elle doit être entre les accolades (<code>{}</code>)</div></figure></div></div><hr id="32f78930-825f-4353-8d2b-0e0cbbd5bccc"/><h2 id="c39d037c-ceb3-44c2-9f37-cbc9d08c2d21" class="">Variables :</h2><div id="76265de3-5af8-499c-91de-23c5341cf7e3" class="column-list"><div id="3d649704-7392-4790-9ddd-5d332e856a46" style="width:33.333333333333336%" class="column"><pre id="ba985d74-4b15-49b0-b41e-4017443b7bc4" class="code"><code>var name: String = &quot;Nate&quot;</code></pre><p id="1a5dd70d-e4ac-4d5e-a5cf-fbccadf4d1a5" class=""><code>var</code> est une variable, elle a un nom, un type (optionnel) et une valeur. Elle est <strong>publique.</strong></p></div><div id="beb1dfac-0bd0-43d0-8346-7fe2d2e185d0" style="width:33.333333333333336%" class="column"><pre id="d9cd8379-6b28-4aec-bfab-c1d25cce7d37" class="code"><code>val name: String = &quot;Nate&quot;</code></pre><p id="2539b698-1a58-4373-b441-3dd165623483" class=""><code>val</code> est une variable non modifiable, elle a un nom, un type (optionnel) et une valeur mais ne peut pas être modifiée au cours du programme. Elle est <strong>privée.</strong></p></div><div id="1cc3f469-d9a4-40b0-afc1-f6725ee07bae" style="width:33.33333333333333%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="00dcf7a9-0c84-4f8e-a6a4-4e348b213a56"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Une variable peut se trouver à l’intérieur ainsi qu’à l’extérieur d’une fonction.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1088a315-bfe5-4803-b7de-209e4bf3c7f0"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Indiquer un type est obligatoire pour les variables nulles</div></figure></div></div><hr id="8497e314-0ca0-4639-a078-37d5f5d0bb27"/><h2 id="19941e18-3d50-4f05-a2e3-0024d905b991" class="">If / Else et When :</h2><div id="ef373788-35c3-4c16-b0c2-3b19a1aca42a" class="column-list"><div id="6e6bd638-5ea4-4ca7-8e24-06fb89b57d91" style="width:33.33333333333333%" class="column"><pre id="58088e47-c8be-46cb-a2f4-01c1a7a9c068" class="code code-wrap"><code>if (greeting != null) {
+		println(greeting)
+} else {
+		println(&quot;Hi&quot;)</code></pre><p id="ffd2e896-098c-4632-ac31-757328f33539" class=""><code>if</code> désigne la condition “si” et <code>else</code> désigne “sinon”.</p></div><div id="e457042f-cdd0-45a7-8186-e158f1a2b76a" style="width:33.33333333333334%" class="column"><pre id="5b7c98b0-ee47-4a13-84d3-10671b0091e8" class="code code-wrap"><code>when (greeting) {
+    null -&gt; println(&quot;Hi&quot;)
+    else -&gt; println(greeting)
+}</code></pre><p id="53723a75-3f62-4739-b354-377d305cc991" class=""><code>when</code> est similaire à <code>if</code> et <code>else</code> . </p></div><div id="507ac48b-fbf7-401c-95cc-05e190cd7310" style="width:33.33333333333333%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3c9caa2c-e7b8-4155-a496-5d8bfdb8cd50"><div style="font-size:1.5em"><span class="icon">👉</span></div><div style="width:100%">Dans le premier exemple, si la variable <code>greeting</code> n’est pas nulle, alors l’afficher sinon imprimer une valeur générique.</div></figure><p id="aee52964-9d84-412e-b278-9fcd4ee9b2f3" class="">
+</p></div></div><hr id="b0e41a3a-9cbe-4444-a210-d7a37dcbd688"/><h2 id="a9db0555-0696-45bd-beef-cd8171a5c9b2" class="">Créer des fonctions personnalisés :</h2><div id="2c3b8c50-48cb-4aac-a245-6c878da1531c" class="column-list"><div id="464e64cb-e5a3-4b39-8b36-3f8f6755ac38" style="width:50%" class="column"><pre id="9bae3740-0c41-434c-b666-64d243b31d78" class="code code-wrap"><code>fun getGreeting() = &quot;Hello Kotlin&quot;
+
+fun sayHello() {
+		println(getGreeting())
+}
+
+fun main() {
+		println(&quot;Hello World&quot;)
+		println(getGreeting())
+		sayHello()
+}</code></pre></div><div id="2389052d-6676-4838-8df2-f26616de261e" style="width:50%" class="column"><p id="537bbfef-3e5c-46a6-8895-479b66d23e8d" class="">On peut créer ses propres fonctions en mettant <code>fun</code> , puis le nom de cette-ci et enfin ce qu’il va se passer en l’exécutant. On peut ensuite l’appeler depuis une autre fonction.</p></div></div><hr id="d2722a08-28b3-4c47-967e-1d40b936087e"/><h2 id="dd8ff6b7-7ce4-443d-b6fb-3a758254b0ea" class="">Paramètres de fonctions :</h2><div id="36939709-9559-43f1-b6af-d0902fcdb9f4" class="column-list"><div id="7aba17be-6aba-4fb3-a7b6-da165285d56a" style="width:50%" class="column"><pre id="932c01f4-d20a-4628-af03-950e1ba00672" class="code code-wrap"><code>fun sayHello(greeting:String, itemToGreet:String) = println(&quot;$greeting $itemToGreet&quot;)
+
+fun main() {
+    sayHello(greeting: &quot;Hey&quot;, itemTpGreet: &quot;Kotlin&quot;)
+    sayHello(greeting: &quot;Hello&quot;, itemToGreet: &quot;World&quot;)
+}</code></pre></div><div id="0c13370c-627c-43a1-9e71-836f20877867" style="width:50%" class="column"><p id="61a9d2ed-c20f-4313-8882-34cd06d08664" class="">On peux intégrer des paramètres aux fonctions pour modifier leur exécution. Dans cet exemple, le paramètre <code>itemToGreet</code> est le nom de la personne à saluer et le paramètre <code>greeting</code> la formule de politesse à utiliser.</p></div></div><hr id="c31a86be-c548-4e9c-8cac-3c0bb20485d6"/><h2 id="bb9305cd-f464-451a-abe5-37423a710171" class="">Array / Lists / Maps :</h2><div id="ccaf7619-e785-4780-9046-e0f4b7b27d38" class="column-list"><div id="4dd7e048-f326-4c3b-bc95-fda60cae2415" style="width:50.000000000000014%" class="column"><pre id="5ba2e8ef-3fa8-4ffe-a0a7-8cc19e7cae9e" class="code code-wrap"><code>fun main() {
+    val interestingThings = arrayOf(&quot;Kotlin&quot;, &quot;Programming&quot;, &quot;Comic Books&quot;)
+		println(interestingThings.size)
+		println(interestingThings[0])
+		println(interestingThings.get(0))
+}</code></pre><p id="826bde67-c6d6-4cfa-a4bd-e38f99f11cab" class="">Une liste, ou <code>array</code> , est un type de variable pouvant contenir plusieurs expressions.</p><ul id="d58242f7-8560-4666-b3bd-7d784ed59f1c" class="toggle"><li><details open=""><summary>On peut ensuite les afficher grâce à différents paramètres :</summary><ul id="aca64c28-82bc-4fd9-807e-002a0dc40469" class="bulleted-list"><li style="list-style-type:disc"><code>size</code> , pour afficher le nombre de valeurs</li></ul><ul id="0c789b62-2f2c-4222-be8f-fb277f2eb9f6" class="bulleted-list"><li style="list-style-type:disc"><code>[0]</code> ou <code>get(0)</code> , pour afficher une valeur précise</li></ul></details></li></ul></div><div id="cfa17495-3e01-456f-bbc8-44d0d7d22e24" style="width:50%" class="column"><pre id="965461c4-12f4-4710-b08c-baee2fb5508b" class="code code-wrap"><code>val map = mapOf(1 to &quot;a&quot;, 2 to &quot;b&quot;, 3 to &quot;c&quot;)
+map.forEach{ (key, value) -&gt; 
+		println(&quot;$key -&gt; $value&quot;)
+}</code></pre><p id="694c5e2d-dab9-4441-9de8-7c317104bd4d" class=""><code>map</code> est une liste contenant des paires.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3a9ecfcd-55e0-483a-9bef-8e8b152e610b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>forEach</code> est une fonction dite “lambda” qui sert à prendre toutes les valeurs de la variables puis de choisir l’action à effectuer avec</div></figure></div></div><p id="20be9f7f-6e40-401f-a6ae-2633bee63d4e" class="">Les listes sont immutables par défaut, c’est à dire qu’on ne peut pas rajouter d’expressions au cours du programme. Pour rendre une liste mutable il suffit de rajouter <code>mutable</code> avant. Par exemple, <code>mutableListOf</code> .</p><hr id="8b02e90d-0f9f-4727-8209-6a584735f741"/><h2 id="1c46c0a4-0348-472d-9286-b3be175befd9" class="">Arguments variables :</h2><div id="9cca8d5f-d578-4c45-bf48-f9ae61e2cda8" class="column-list"><div id="6142c7a8-8354-473f-927c-454afff059b7" style="width:50%" class="column"><pre id="4be2eec6-d5d9-4226-b915-e8867dae0854" class="code code-wrap"><code>fun sayHello(greeting:String, vararg itemsToGreet:String) {
+    itemsToGreet.forEach{itemToGreet-&gt;
+				println(&quot;$greeting $itemToGreet&quot;)
+		}
+}</code></pre></div><div id="e4cdd8b7-d9c1-46a7-bbf9-7b877bcb0ffc" style="width:50%" class="column"><p id="45627d75-9e0d-42a6-948f-8a7ba0a23dc5" class="">Pour plus de flexibilité, on peut mettre <code>vararg</code> en tant que paramètre.</p></div></div></div></article></body></html>
